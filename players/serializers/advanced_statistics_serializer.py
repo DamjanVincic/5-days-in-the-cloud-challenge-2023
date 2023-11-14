@@ -5,4 +5,4 @@ from players.models import AdvancedStatistics
 class AdvancedStatisticsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvancedStatistics
-        fields = "__all__"
+        exclude = ('id',)

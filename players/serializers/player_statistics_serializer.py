@@ -1,11 +1,12 @@
 from rest_framework import serializers
-from players.models import PlayerStatistics
-from . import TraditionalStatisticsSerializer, AdvancedStatisticsSerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
+from players.models import PlayerStatistics, TraditionalStatistics, AdvancedStatistics, ShotStatistics
+from . import TraditionalStatisticsSerializer, AdvancedStatisticsSerializer, ShotStatisticsSerializer
 
-class PlayerStatisticsSerializer(serializers.ModelSerializer):
+class PlayerStatisticsSerializer(WritableNestedModelSerializer):
     traditional = TraditionalStatisticsSerializer()
     advanced = AdvancedStatisticsSerializer()
 
     class Meta:
         model = PlayerStatistics
-        fields = "__all__"
+        exclude = ('id',)
