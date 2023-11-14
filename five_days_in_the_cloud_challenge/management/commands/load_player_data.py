@@ -28,6 +28,7 @@ class Command(BaseCommand):
                         'STL': row['STL'],
                         'TOV': row['TOV']
                     }
+                    
                     try:
                         player = Player.objects.get(player=data['player'])
                         for k, v in data.items():

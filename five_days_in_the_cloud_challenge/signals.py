@@ -1,7 +1,6 @@
 import csv
 from players.models import Player, PlayerStatistics
 from players.serializers import PlayerSerialzer, PlayerStatisticsSerializer
-import os
 
 
 def load_data():
@@ -26,11 +25,13 @@ def load_data():
                     'STL': row['STL'],
                     'TOV': row['TOV']
                 }
+                
                 try:
                     player = Player.objects.get(player=data['player'])
                     for k, v in data.items():
                         if k not in ('player, position'):
                             setattr(player, k, getattr(player, k) + int(v))
+                    player.gamesPlayed += 1
                     player.save()
                 except Player.DoesNotExist:
                     serializer = PlayerSerialzer(data=data)

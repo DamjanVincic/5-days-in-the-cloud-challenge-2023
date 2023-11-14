@@ -1,4 +1,3 @@
-from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from players.models import TraditionalStatistics
 from . import ShotStatisticsSerializer

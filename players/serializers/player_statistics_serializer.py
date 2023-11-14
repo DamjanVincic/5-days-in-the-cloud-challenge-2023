@@ -1,7 +1,6 @@
-from rest_framework import serializers
 from drf_writable_nested.serializers import WritableNestedModelSerializer
-from players.models import PlayerStatistics, TraditionalStatistics, AdvancedStatistics, ShotStatistics
-from . import TraditionalStatisticsSerializer, AdvancedStatisticsSerializer, ShotStatisticsSerializer
+from players.models import PlayerStatistics
+from . import TraditionalStatisticsSerializer, AdvancedStatisticsSerializer
 
 class PlayerStatisticsSerializer(WritableNestedModelSerializer):
     traditional = TraditionalStatisticsSerializer()

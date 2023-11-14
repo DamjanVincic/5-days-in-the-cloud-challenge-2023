@@ -3,11 +3,11 @@ from enum import Enum
 
 
 class Positions(Enum):
-    PG = 'PG'
-    SG = 'SG'
-    SF = 'SF'
-    PF = 'PF'
-    C = 'C'
+    PG = 'PG' # Point Guard
+    SG = 'SG' # Shooting Guard
+    SF = 'SF' # Small Forward
+    PF = 'PF' # Power Forward
+    C = 'C' # Center
 
 class Player(models.Model):
     player = models.CharField(max_length=50) # Player's full name

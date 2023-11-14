@@ -12,4 +12,3 @@ class StartAppConfig(AppConfig):
             from .signals import load_data, calculate_statistics
             load_data()
             calculate_statistics()
-            
