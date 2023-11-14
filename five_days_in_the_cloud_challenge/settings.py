@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'players',
+    'five_days_in_the_cloud_challenge.apps.StartAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,8 @@ WSGI_APPLICATION = 'five_days_in_the_cloud_challenge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
+        # 'NAME': ':memory:',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
