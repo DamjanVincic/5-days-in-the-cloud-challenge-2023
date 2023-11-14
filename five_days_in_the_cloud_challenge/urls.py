@@ -20,5 +20,5 @@ from players.urls import urlpatterns as player_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('players/', include(player_urlpatterns))
+    path('stats/player/', include(player_urlpatterns))
 ]
