@@ -7,6 +7,9 @@ class StartAppConfig(AppConfig):
     name = 'five_days_in_the_cloud_challenge'
 
     def ready(self):
+        pass
         if not sys.argv[1].startswith('migrate') or sys.argv[1].startswith('makemigrations'):
-            from .signals import load_data
+            from .signals import load_data, calculate_statistics
             load_data()
+            calculate_statistics()
+            
