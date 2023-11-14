@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: 5-days-in-the-cloud
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - data:/app
+
+volumes:
+  data:

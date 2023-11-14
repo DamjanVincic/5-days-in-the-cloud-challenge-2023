@@ -9,6 +9,7 @@ class StartAppConfig(AppConfig):
     def ready(self):
         pass
         if not sys.argv[1].startswith('migrate') or sys.argv[1].startswith('makemigrations'):
-            from .signals import load_data, calculate_statistics
-            load_data()
-            calculate_statistics()
+            # from .signals import load_data, calculate_statistics
+            # load_data()
+            # calculate_statistics()
+            pass
