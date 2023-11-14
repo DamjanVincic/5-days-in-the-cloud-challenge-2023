@@ -23,3 +23,4 @@ class Player(models.Model):
     AST = models.IntegerField() # Assists
     STL = models.IntegerField() # Steals
     TOV = models.IntegerField() # Turnovers
+    gamesPlayed = models.IntegerField(default=1)
