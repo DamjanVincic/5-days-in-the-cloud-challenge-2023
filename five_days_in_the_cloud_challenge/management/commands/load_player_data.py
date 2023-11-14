@@ -33,6 +33,7 @@ class Command(BaseCommand):
                         for k, v in data.items():
                             if k not in ('player, position'):
                                 setattr(player, k, getattr(player, k) + int(v))
+                        player.gamesPlayed += 1
                         player.save()
                     except Player.DoesNotExist:
                         serializer = PlayerSerialzer(data=data)
