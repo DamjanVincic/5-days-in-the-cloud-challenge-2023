@@ -14,10 +14,7 @@ class TraditionalStatistics(models.Model):
     turnovers = models.FloatField()
 
     def save(self, *args, **kwargs):
-        self.points = round(self.points, 1)
-        self.rebounds = round(self.rebounds, 1)
-        self.blocks = round(self.blocks, 1)
-        self.assists = round(self.assists, 1)
-        self.steals = round(self.steals, 1)
-        self.turnovers = round(self.turnovers, 1)
+        for k, v in self.__dict__.items():
+            if k in ('points', 'rebounds', 'blocks', 'assists', 'steals', 'turnovers'):
+                setattr(self, k, round(v, 1))
         super(TraditionalStatistics, self).save(*args, **kwargs)

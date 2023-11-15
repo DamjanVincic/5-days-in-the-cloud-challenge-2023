@@ -16,26 +16,26 @@ class Command(BaseCommand):
                 "gamesPlayed": player.gamesPlayed,
                 "traditional": {
                     "freeThrows": {
-                        "attempts": player.FTA/player.gamesPlayed,
-                        "made": player.FTM/player.gamesPlayed,
+                        "attempts": player.FTA,
+                        "made": player.FTM,
                         "shootingPercentage": 0 if not player.FTA else player.FTM/player.FTA*100
                     },
                     "twoPoints": {
-                        "attempts": player.TWO_PA/player.gamesPlayed,
-                        "made": player.TWO_PM/player.gamesPlayed,
+                        "attempts": player.TWO_PA,
+                        "made": player.TWO_PM,
                         "shootingPercentage": 0 if not player.TWO_PA else player.TWO_PM/player.TWO_PA*100
                     },
                     "threePoints": {
-                        "attempts": player.THREE_PA/player.gamesPlayed,
-                        "made": player.THREE_PM/player.gamesPlayed,
+                        "attempts": player.THREE_PA,
+                        "made": player.THREE_PM,
                         "shootingPercentage": 0 if not player.THREE_PA else player.THREE_PM/player.THREE_PA*100
                     },
-                    "points": (player.FTM + player.TWO_PM*2 + player.THREE_PM*3)/player.gamesPlayed,
-                    "rebounds": player.REB/player.gamesPlayed,
-                    "blocks": player.BLK/player.gamesPlayed,
-                    "assists": player.AST/player.gamesPlayed,
-                    "steals": player.STL/player.gamesPlayed,
-                    "turnovers": player.TOV/player.gamesPlayed,
+                    "points": player.FTM + player.TWO_PM*2 + player.THREE_PM*3,
+                    "rebounds": player.REB,
+                    "blocks": player.BLK,
+                    "assists": player.AST,
+                    "steals": player.STL,
+                    "turnovers": player.TOV,
                 },
                 "advanced": {
                     "valorization": (player.FTM + 2*player.TWO_PM + 3* player.THREE_PM + player.REB + player.BLK + player.AST + player.STL - (player.FTA - player.FTM + player.TWO_PA - player.TWO_PM + player.THREE_PA - player.THREE_PM + player.TOV))/player.gamesPlayed,
@@ -44,6 +44,17 @@ class Command(BaseCommand):
                     "hollingerAssistRatio": 0 if (player.TWO_PA + player.THREE_PA + 0.475*player.FTA + player.AST + player.TOV) == 0 else player.AST / (player.TWO_PA + player.THREE_PA + 0.475*player.FTA + player.AST + player.TOV) * 100
                 }
             }
+            
+            # Dividing by games played
+            for k, v in data.items():
+                if k == "traditional":
+                    for k2, v2 in v.items():
+                        if isinstance(v2, dict):
+                            v2["attempts"] /= player.gamesPlayed
+                            v2["made"] /= player.gamesPlayed
+                        else:
+                            v[k2] /= player.gamesPlayed
+
             serializer = PlayerStatisticsSerializer(data=data)
             if (serializer.is_valid()):
                 serializer.save()

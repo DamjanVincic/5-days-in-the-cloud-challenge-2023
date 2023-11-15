@@ -8,8 +8,7 @@ class AdvancedStatistics(models.Model):
     hollingerAssistRatio = models.FloatField()
 
     def save(self, *args, **kwargs):
-        self.valorization = round(self.valorization, 1)
-        self.effectiveFieldGoalPercentage = round(self.effectiveFieldGoalPercentage, 1)
-        self.trueShootingPercentage = round(self.trueShootingPercentage, 1)
-        self.hollingerAssistRatio = round(self.hollingerAssistRatio, 1)
+        for k, v in self.__dict__.items():
+            if k in ('valorization', 'effectiveFieldGoalPercentage', 'trueShootingPercentage', 'hollingerAssistRatio'):
+                setattr(self, k, round(v, 1))
         super(AdvancedStatistics, self).save(*args, **kwargs)
