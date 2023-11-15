@@ -17,7 +17,7 @@ class PlayerTests(TestCase):
         except Player.DoesNotExist:
             self.fail("Player not found")
 
-    def test_check_statistics(self):
+    def test_existins_statistics(self):
         response = self.client.get('/stats/player/Sifiso Abdalla/')
         self.assertNotEqual(response.status_code, 404)
 
@@ -55,3 +55,7 @@ class PlayerTests(TestCase):
             }
         }
         self.assertEqual(response.data, data)
+
+    def test_non_existing_statistics(self):
+        response = self.client.get('/stats/player/Non Existing Player/')
+        self.assertEqual(response.status_code, 404)
